@@ -1,0 +1,18 @@
+{
+  "name": "p2p_network",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^0.9.0",
+    "mkdirp": "^0.5.0",
+    "optimist": "^0.6.1",
+    "rimraf": "^2.2.8",
+    "ripple-lib": "^0.9.2-rc5"
+  }
+}
