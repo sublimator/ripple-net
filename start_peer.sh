@@ -1,10 +1,9 @@
-#!/bin/bash
-export RIPPLED="$HOME/rippled2/build/gcc.debug/rippled"
-export conf="$PWD/$1/rippled.cfg"
+#!/usr/bin/env bash
+export conf="$PWD/N$1/rippled.cfg"
 
 function launch ()
 {
-    $RIPPLED --net --fg --conf $conf&
+    $RIPPLED $2 --fg --conf $conf&
     export ripd=$!
 }
 
@@ -14,7 +13,7 @@ echo $ripd;
 
 while true;
 do
-    inotifywait -e close_write $conf;
+    fswatch -o $conf | echo
     echo "conf changed!";
     kill -9 $ripd
     sleep 3
@@ -22,4 +21,3 @@ do
 done
 
 echo "DONE!"
-

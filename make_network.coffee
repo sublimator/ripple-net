@@ -56,10 +56,11 @@ config = (name, port_offset, peers) ->
     validation_seed: validator_keys.seed
     node_seed: validator_keys.seed
 
-    validation_quorum: 3
+    validation_quorum: 2
 
     node_db:
       type: 'memory'
+      path: './db' # this is needed now
 
     server : ['port_peer', 'port_ws', 'port_http']
     peer_private: 1
@@ -135,5 +136,5 @@ dump_peer = (p, conf) ->
       console.log '#'+ p
       console.log(conf)
 
-for p, s of create_peers(15)
+for p, s of create_peers(2)
   dump_peer(p, create_ini s)
