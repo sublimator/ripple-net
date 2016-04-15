@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 export conf="$PWD/N$1/rippled.cfg"
+export extraArgs="${@:2}"
 
 function launch ()
 {
-    $RIPPLED $2 --fg --conf $conf&
+    $RIPPLED $extraArgs --fg --conf $conf&
     export ripd=$!
 }
 

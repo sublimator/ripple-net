@@ -52,6 +52,11 @@ config = (name, port_offset, peers) ->
   validator_keys = validation_create(name)
 
   struct =
+    voting:
+      reference_fee:         10
+      account_reserve: 20000000
+      owner_reserve:    5000000
+
     validation_public_key: validator_keys.public_key
     validation_seed: validator_keys.seed
     node_seed: validator_keys.seed
@@ -77,7 +82,7 @@ config = (name, port_offset, peers) ->
     port_http:
       ip: '127.0.0.1'
       port: 7551 + port_offset
-      admin: 'allow'
+      admin: '127.0.0.1'
       protocol: 'http'
 
     # rpc_startup: '{ "command": "log_level", "severity": "trace" }'
@@ -85,7 +90,7 @@ config = (name, port_offset, peers) ->
     port_ws:
       ip: '127.0.0.1'
       port: 7552 + port_offset
-      admin: 'allow'
+      admin: '127.0.0.1'
       protocol: 'ws'
 
   struct
@@ -136,5 +141,5 @@ dump_peer = (p, conf) ->
       console.log '#'+ p
       console.log(conf)
 
-for p, s of create_peers(2)
+for p, s of create_peers(3)
   dump_peer(p, create_ini s)
